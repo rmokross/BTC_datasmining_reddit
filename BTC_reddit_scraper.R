@@ -1,8 +1,7 @@
 #Bitcoin subreddit Dataminer
 
-needs(rvest)
-needs(readr)
-needs(sentimentr)
+library(rvest)
+library(sentimentr)
 
 #read all links of threads with recent comments (last hour)
 newlink <- "https://www.reddit.com/r/Bitcoin/comments/"
@@ -69,7 +68,7 @@ senti_table <- read.csv("C:\\R-Daten\\data Scraping\\avrg_sentiment_table.csv")[
 senti_table[nrow(senti_table)+1,] <-c(avrg_sentim,as.character(Sys.time()),
                                       length(links), nrow(sentim), sd(sentim$sentiment))
 
-write.csv(senti_table, file = "C:\\R-Daten\\data Scraping\\avrg_sentiment_table.csv"
+write.csv(senti_table, file = "avrg_sentiment_table.csv"
             )
 print(tail(senti_table))
 
